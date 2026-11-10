@@ -310,12 +310,17 @@ const MUJERES = [
     const below = p.row < 2;                       // filas de arriba: bocadillo debajo
     bubble.classList.toggle("below", below);
     bubble.classList.toggle("above", !below);
-    const left = Math.min(Math.max(p.cx / S * 100, 30), 70);
+    bubble.hidden = false;
+    // centrar el bocadillo sobre la pieza sin que se salga del puzle (su ancho cambia en móvil)
+    const wPct = bubble.offsetWidth / bubble.offsetParent.clientWidth * 100;
+    const half = Math.min(wPct / 2 + 1, 50);
+    const pieceX = p.cx / S * 100;
+    const left = Math.min(Math.max(pieceX, half), 100 - half);
     bubble.style.left = left + "%";
-    bubble.style.setProperty("--arrow", `${50 + (p.cx / S * 100 - left) / 0.6}%`);
+    const arrow = 50 + (pieceX - left) / wPct * 100;
+    bubble.style.setProperty("--arrow", `${Math.min(Math.max(arrow, 10), 90)}%`);
     bubble.style.top = below ? ((p.cy + 52) / S * 100) + "%" : "";
     bubble.style.bottom = below ? "" : ((S - p.cy + 52) / S * 100) + "%";
-    bubble.hidden = false;
     bubble.classList.remove("swap"); void bubble.offsetWidth; bubble.classList.add("swap");
     pieces.forEach((q, k) => q.out.classList.toggle("current", k === i));
   }
