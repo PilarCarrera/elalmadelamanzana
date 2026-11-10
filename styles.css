@@ -402,11 +402,24 @@ button.cal-day:not(.past):not(.selected) .mini-apple { animation: wiggle 2.6s ea
 .contact-form .invalid { border-color: var(--apple); }
 .error { color: var(--apple); font-family: var(--ff-body); font-size: .8rem; min-height: 1em; }
 .char-count { justify-self: end; font-family: var(--ff-body); font-size: .75rem; color: #7a6a80; }
-.form-success { margin: 0; color: var(--purple-dark); }
-.form-fail { margin: 0; color: #b3261e; }
-.form-success[hidden], .form-fail[hidden] { display: none; }
-.botcheck { display: none; }
-.btn-form:disabled { opacity: .6; cursor: wait; }
+/* elegir con qué app enviar el mensaje */
+.send-choice { display: grid; gap: 8px; padding: 16px; border: 2px dashed var(--purple); border-radius: 16px; background: rgba(255, 255, 255, .7); text-align: center; }
+.send-choice[hidden] { display: none; }
+.send-choice.swap { animation: evIn .4s; }
+.send-title { margin: 0; font-family: var(--ff-nav); text-transform: uppercase; letter-spacing: .06em; color: var(--purple-dark); }
+.send-hint { margin: 0; font-family: var(--ff-body); font-size: .85rem; color: #6a5a70; }
+.send-hint a { color: var(--purple); }
+.send-btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 4px 0; }
+.send-btn {
+  display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 10px; border-radius: 999px;
+  border: 2px solid var(--purple); background: #fff; color: var(--purple-dark); font: inherit; font-family: var(--ff-nav);
+  font-size: .85rem; letter-spacing: .03em; text-decoration: none; cursor: pointer; transition: background .2s, color .2s;
+}
+.send-btn:hover { background: var(--purple); color: #fff; }
+#send-app { grid-column: 1 / -1; background: var(--purple); color: #fff; }
+#send-app:hover { background: var(--purple-deep); }
+#send-copy { grid-column: 1 / -1; }
+@media (max-width: 420px) { .send-btns { grid-template-columns: minmax(0, 1fr); } }
 .btn-form {
   cursor: pointer; border: 0; border-radius: 999px; padding: 14px; background: var(--purple); color: #fff;
   font-family: var(--ff-nav); text-transform: uppercase; letter-spacing: .05em; font-size: .95rem;

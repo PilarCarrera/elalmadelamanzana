@@ -328,10 +328,18 @@
             <span class="char-count">0 / 600</span>
             <span class="error"></span>
           </label>
-          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit" class="btn-form">Enviar mensaje</button>
-          <p class="form-success" role="status" hidden>¡Gracias! Tu mensaje se ha enviado. Te responderemos pronto. 🍎</p>
-          <p class="form-fail" role="alert" hidden>No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a <a href="mailto:info@elalmadelamanzana.es">info@elalmadelamanzana.es</a>.</p>
+          <div class="send-choice" id="send-choice" role="group" aria-labelledby="send-choice-title" hidden>
+            <p class="send-title" id="send-choice-title">¿Con qué quieres enviarlo? 🍎</p>
+            <p class="send-hint">Tu mensaje ya está escrito: solo tendrás que pulsar «Enviar» en tu correo.</p>
+            <div class="send-btns">
+              <a class="send-btn" id="send-app" href="#">📱 Mi app de correo</a>
+              <a class="send-btn" id="send-gmail" href="#" target="_blank" rel="noopener">Gmail</a>
+              <a class="send-btn" id="send-outlook" href="#" target="_blank" rel="noopener">Outlook / Hotmail</a>
+              <button type="button" class="send-btn" id="send-copy">📋 Copiar el mensaje</button>
+            </div>
+            <p class="send-hint">O escríbenos tú directamente a <a href="mailto:info@elalmadelamanzana.es">info@elalmadelamanzana.es</a></p>
+          </div>
         </form>
       </div>
     </section>

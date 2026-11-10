@@ -635,38 +635,27 @@ function validate(field) {
   return !text;
 }
 $$("[required]", form).forEach(f => f.addEventListener("blur", () => validate(f)));
-// los mensajes se envían por Web3Forms (clave pública: solo permite enviar al correo registrado)
-const WEB3FORMS_KEY = "cfa1dbb4-9d9a-475a-ac7e-a31836447ebe";
-form.addEventListener("submit", async e => {
+// El mensaje se abre ya escrito en el correo que elija la persona (app del móvil, Gmail, Outlook) o se copia.
+const CORREO = "info@elalmadelamanzana.es";
+const choice = $("#send-choice");
+let draft = null;
+form.addEventListener("submit", e => {
   e.preventDefault();
-  const ok = $(".form-success", form), fail = $(".form-fail", form), btn = $("button[type=submit]", form);
-  ok.hidden = fail.hidden = true;
-  if (!$$("[required]", form).map(validate).every(Boolean)) { $(".invalid", form)?.focus(); return; }
-  btn.disabled = true; btn.textContent = "Enviando…";
-  try {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `Web El alma de la manzana: ${form.motivo.value} — ${form.nombre.value}`,
-        from_name: "Web El alma de la manzana",
-        nombre: form.nombre.value,
-        email: form.email.value,
-        motivo: form.motivo.value,
-        mensaje: form.mensaje.value,
-        botcheck: form.botcheck.checked,
-      }),
-    });
-    const data = await res.json();
-    if (!res.ok || !data.success) throw new Error(data.message || res.status);
-    ok.hidden = false;
-    form.reset();
-    $(".char-count", form).textContent = "0 / 600";
-  } catch (err) {
-    console.error("Error al enviar el formulario:", err);
-    fail.hidden = false;
-  } finally {
-    btn.disabled = false; btn.textContent = "Enviar mensaje";
-  }
+  if (!$$("[required]", form).map(validate).every(Boolean)) { $(".invalid", form)?.focus(); choice.hidden = true; return; }
+  const subject = `${form.motivo.value} — ${form.nombre.value}`;
+  const body = `${form.mensaje.value}\n\n${form.nombre.value}\n${form.email.value}`;
+  const s = encodeURIComponent(subject), b = encodeURIComponent(body), to = encodeURIComponent(CORREO);
+  draft = { subject, body };
+  $("#send-app").href = `mailto:${CORREO}?subject=${s}&body=${b}`;
+  $("#send-gmail").href = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${s}&body=${b}`;
+  $("#send-outlook").href = `https://outlook.live.com/mail/0/deeplink/compose?to=${to}&subject=${s}&body=${b}`;
+  choice.hidden = false;
+  choice.classList.remove("swap"); void choice.offsetWidth; choice.classList.add("swap");
+  choice.scrollIntoView({ behavior: smooth(), block: "nearest" });
+});
+$("#send-copy").addEventListener("click", async () => {
+  if (!draft) return;
+  const text = `Para: ${CORREO}\nAsunto: ${draft.subject}\n\n${draft.body}`;
+  try { await navigator.clipboard.writeText(text); showToast("Mensaje copiado: pégalo en tu correo 📋"); }
+  catch { showToast(`Escríbenos a ${CORREO}`); }
 });
