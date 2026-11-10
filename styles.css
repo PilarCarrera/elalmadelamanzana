@@ -763,7 +763,22 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .ev-empty { display: none; }
 .ev.no-events > :not(.cute-top, .cute-ribbon, .ev-empty, .cute-bottom) { display: none; }
 .ev.no-events .ev-empty { display: block; text-align: center; padding: 18px 8px 4px; font-family: var(--ff-card); font-size: 1.08rem; line-height: 1.5; letter-spacing: 0; }
-.ev-empty img { width: 70px; margin: 0 auto 14px; animation: wiggle 2.6s ease-in-out infinite; }
+/* cartelito "Fechas por anunciar": entrada de teatro que se balancea */
+.tba { display: inline-block; margin: 6px auto 20px; filter: drop-shadow(0 8px 12px rgba(93, 36, 112, .35)); transform-origin: 50% -30px; animation: tbaSwing 3.2s ease-in-out infinite; }
+.tba-ticket {
+  position: relative; display: grid; gap: 2px; padding: 16px 38px 14px;
+  background: linear-gradient(160deg, #b35bc4, #8e3a87); color: #fff;
+  outline: 2px dashed rgba(255, 242, 250, .75); outline-offset: -8px; border-radius: 8px;
+  -webkit-mask: radial-gradient(circle 12px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+                radial-gradient(circle 12px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle 12px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+                radial-gradient(circle 12px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+}
+.tba-small { font-family: var(--ff-nav); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; opacity: .9; }
+.tba-big { font-family: var(--ff-script); font-size: clamp(1.9rem, 4vw, 2.4rem); line-height: 1.05; letter-spacing: 0; color: #ffe9a8; text-shadow: 0 2px 0 rgba(60, 10, 50, .35); }
+.tba-stars { font-size: .7rem; letter-spacing: .5em; color: #ffd66e; padding-left: .5em; }
+@keyframes tbaSwing { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@media (prefers-reduced-motion: reduce) { .tba { animation: none; transform: rotate(-2deg); } }
 .ev-empty p { margin: 0 0 8px; }
-.ev-empty p:first-of-type { font-weight: 700; color: var(--plum); font-size: 1.2rem; }
+.ev-empty > p:first-of-type { font-weight: 700; color: var(--plum); font-size: 1.15rem; }
 .ev-empty a { color: var(--plum); }
