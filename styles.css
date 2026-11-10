@@ -758,3 +758,12 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .collab-branch { display: none; }
   .collab-leaves { width: 240px; margin-top: 0; }
 }
+
+/* Próximas actuaciones: tarjeta cuando aún no hay fechas */
+.ev-empty { display: none; }
+.ev.no-events > :not(.cute-top, .cute-ribbon, .ev-empty, .cute-bottom) { display: none; }
+.ev.no-events .ev-empty { display: block; text-align: center; padding: 18px 8px 4px; font-family: var(--ff-card); font-size: 1.08rem; line-height: 1.5; letter-spacing: 0; }
+.ev-empty img { width: 70px; margin: 0 auto 14px; animation: wiggle 2.6s ease-in-out infinite; }
+.ev-empty p { margin: 0 0 8px; }
+.ev-empty p:first-of-type { font-weight: 700; color: var(--plum); font-size: 1.2rem; }
+.ev-empty a { color: var(--plum); }

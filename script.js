@@ -53,19 +53,10 @@ const ACTUACIONES = [
   { fecha: null, escenario: "reinosa", titulo: "El Alma de la Manzana",
     texto: "Llevamos nuestras historias en femenino al escenario del Teatro Principal de Reinosa." },
 
-  // ---- Próximas (INVENTADAS de momento: cámbialas por las reales) ----
-  { fecha: "2026-11-21T20:00", escenario: "breton", titulo: "El Alma de la Manzana",
-    puertas: "19:30", entrada: "Entrada libre hasta completar aforo",
-    texto: "Una velada íntima de teatro y emoción, con escenas creadas por El alma de la manzana que celebran la memoria, la fuerza y la voz de las mujeres." },
-  { fecha: "2026-11-27T20:00", escenario: "reinosa", titulo: "El Alma de la Manzana",
-    puertas: "19:30", entrada: "Entrada libre hasta completar aforo",
-    texto: "Teatro, música, danza y escritura para narrar historias de mujeres: desde la desobediencia de Eva hasta nuestras propias vivencias." },
-  { fecha: "2026-12-12T19:00", escenario: "concha", titulo: "El Alma de la Manzana",
-    puertas: "18:30", entrada: "Entrada libre hasta completar aforo",
-    texto: "Volvemos a casa: Lilith, Eva, Hipatia o Virginia Woolf suben al escenario que nos vio nacer para reivindicar el papel de la mujer en la historia." },
-  { fecha: "2027-01-23T19:30", escenario: "cueto", titulo: "El Alma de la Manzana",
-    puertas: "19:00", entrada: "Entrada libre hasta completar aforo",
-    texto: "Regresamos a Santander con nuestro montaje multidisciplinar: interpretación, música, escritura, fotografía, costura y danza." },
+  // ---- Próximas: de momento no hay ninguna. Para añadir una, copia este ejemplo (sin las //):
+  // { fecha: "2027-01-23T19:30", escenario: "cueto", titulo: "El Alma de la Manzana",
+  //   puertas: "19:00", entrada: "Entrada libre hasta completar aforo",
+  //   texto: "Descripción de la función." },
 ];
 
 /* ========================================================= */
@@ -380,7 +371,7 @@ const MUJERES = [
    ========================================================= */
 const calDays = $("#cal-days"), calMonth = $("#cal-month"), calSub = $("#cal-sub"), calJump = $("#cal-jump");
 const card = $("#event-card");
-const start = upcoming[0] || dated[dated.length - 1];
+const start = upcoming[0];   // si no hay próximas, el calendario abre en el mes actual
 let viewY = (start?.d || new Date()).getFullYear();
 let viewM = (start?.d || new Date()).getMonth();
 let selected = null;
@@ -453,7 +444,8 @@ function selectEvent(ev) {
 
 function renderCard() {
   const ev = selected;
-  if (!ev) return;
+  card.classList.toggle("no-events", !ev);
+  if (!ev) { $("#ev-label").textContent = "Próximas actuaciones"; return; }
   const future = isFuture(ev);
   const isNext = upcoming[0]?.id === ev.id;
   $("#ev-label").textContent = future ? (isNext ? "Próxima actuación" : "Actuación") : "Actuación pasada";
@@ -488,7 +480,7 @@ function downloadICS(ev) {
   showToast("Fecha guardada en tu calendario 📅");
 }
 
-if (start) selectEvent(start); else renderCalendar();
+if (start) selectEvent(start); else { renderCalendar(); renderCard(); }
 
 /* =========================================================
    GALERÍA: carrusel
