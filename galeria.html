@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#a952b3">
+  <title>Galería · El Alma de la Manzana</title>
+  <meta name="description" content="El Alma de la Manzana: proyecto social, cultural y teatral de mujeres nacido en 2020 en Villanueva de Villaescusa (Cantabria).">
+  <link rel="icon" href="images/manzana.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Federo&family=Great+Vibes&family=Lora:ital,wght@0,500;0,700;1,500;1,700&family=Old+Standard+TT:wght@400;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <!-- ========== CABECERA ========== -->
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="Inicio">
+      <img src="images/manzana.png" alt="" class="brand-logo">
+      <span>El Alma de la Manzana</span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav">
+      <a href="index.html#quienes">Quienes somos</a>
+      <a href="index.html#proximas">Próximas actuaciones</a>
+      <a href="index.html#galeria" class="active">Galeria</a>
+      <a href="index.html#pasadas">Actuaciones pasadas</a>
+      <a href="index.html#contacto">Contáctanos</a>
+      <a href="index.html#prensa">Prensa</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section cream gallery-page">
+      <div class="container">
+        <a class="back-link" href="index.html#galeria">‹ Volver al inicio</a><br>
+        <h2 class="section-title caps visible">Galería</h2>
+        <div class="masonry" id="masonry"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="images/manzana.png" alt="" class="brand-logo">
+    <p>© <span id="year"></span> El Alma de la Manzana · Villaescusa, Cantabria</p>
+    <p class="credit">Web diseñada y desarrollada por <a href="https://www.pilarcm.eu/" target="_blank" rel="noopener">Pilar Carrera Monterde</a></p>
+    <a href="#top" class="to-top">Volver arriba ↑</a>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+    <button class="lb-close" aria-label="Cerrar">×</button>
+    <button class="lb-nav lb-prev" aria-label="Anterior">‹</button>
+    <figure>
+      <img id="lb-img" alt="">
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" aria-label="Siguiente">›</button>
+  </div>
+
+  <script src="datos.js"></script>
+  <script>
+    const grid = $("#masonry");
+    FOTOS.forEach((src, i) => {
+      const b = document.createElement("button");
+      b.innerHTML = `<img src="${src}" alt="Foto ${i + 1} de El Alma de la Manzana" loading="lazy">`;
+      b.addEventListener("click", () => Lightbox.open(FOTOS, i));
+      grid.appendChild(b);
+    });
+  </script>
+</body>
+</html>
