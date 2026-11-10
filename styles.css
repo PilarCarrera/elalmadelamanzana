@@ -403,6 +403,10 @@ button.cal-day:not(.past):not(.selected) .mini-apple { animation: wiggle 2.6s ea
 .error { color: var(--apple); font-family: var(--ff-body); font-size: .8rem; min-height: 1em; }
 .char-count { justify-self: end; font-family: var(--ff-body); font-size: .75rem; color: #7a6a80; }
 .form-success { margin: 0; color: var(--purple-dark); }
+.form-fail { margin: 0; color: #b3261e; }
+.form-success[hidden], .form-fail[hidden] { display: none; }
+.botcheck { display: none; }
+.btn-form:disabled { opacity: .6; cursor: wait; }
 .btn-form {
   cursor: pointer; border: 0; border-radius: 999px; padding: 14px; background: var(--purple); color: #fff;
   font-family: var(--ff-nav); text-transform: uppercase; letter-spacing: .05em; font-size: .95rem;

@@ -643,13 +643,38 @@ function validate(field) {
   return !text;
 }
 $$("[required]", form).forEach(f => f.addEventListener("blur", () => validate(f)));
-form.addEventListener("submit", e => {
+// los mensajes se envían por Web3Forms (clave pública: solo permite enviar al correo registrado)
+const WEB3FORMS_KEY = "cfa1dbb4-9d9a-475a-ac7e-a31836447ebe";
+form.addEventListener("submit", async e => {
   e.preventDefault();
+  const ok = $(".form-success", form), fail = $(".form-fail", form), btn = $("button[type=submit]", form);
+  ok.hidden = fail.hidden = true;
   if (!$$("[required]", form).map(validate).every(Boolean)) { $(".invalid", form)?.focus(); return; }
-  const subject = `${form.motivo.value} — ${form.nombre.value}`;
-  const body = `${form.mensaje.value}\n\n${form.nombre.value} (${form.email.value})`;
-  $(".form-success", form).hidden = false;
-  location.href = `mailto:info@elalmadelamanzana.es?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  form.reset();
-  $(".char-count", form).textContent = "0 / 600";
+  btn.disabled = true; btn.textContent = "Enviando…";
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `Web El alma de la manzana: ${form.motivo.value} — ${form.nombre.value}`,
+        from_name: "Web El alma de la manzana",
+        nombre: form.nombre.value,
+        email: form.email.value,
+        motivo: form.motivo.value,
+        mensaje: form.mensaje.value,
+        botcheck: form.botcheck.checked,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.message || res.status);
+    ok.hidden = false;
+    form.reset();
+    $(".char-count", form).textContent = "0 / 600";
+  } catch (err) {
+    console.error("Error al enviar el formulario:", err);
+    fail.hidden = false;
+  } finally {
+    btn.disabled = false; btn.textContent = "Enviar mensaje";
+  }
 });

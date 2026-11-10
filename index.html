@@ -317,8 +317,10 @@
             <span class="char-count">0 / 600</span>
             <span class="error"></span>
           </label>
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit" class="btn-form">Enviar mensaje</button>
-          <p class="form-success" hidden>¡Gracias! Se abrirá tu programa de correo para enviar el mensaje. 🍎</p>
+          <p class="form-success" role="status" hidden>¡Gracias! Tu mensaje se ha enviado. Te responderemos pronto. 🍎</p>
+          <p class="form-fail" role="alert" hidden>No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a <a href="mailto:info@elalmadelamanzana.es">info@elalmadelamanzana.es</a>.</p>
         </form>
       </div>
     </section>
