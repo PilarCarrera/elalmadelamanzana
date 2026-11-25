@@ -56,12 +56,37 @@ const FOTOS = [
   "images/galeria/foto-48.jpg",
   "images/galeria/foto-49.jpg",
   "images/galeria/foto-50.jpg",
+  "images/galeria/foto-51.jpg",
+  "images/galeria/foto-52.jpg",
+  "images/galeria/foto-53.jpg",
+  "images/galeria/foto-54.jpg",
+  "images/galeria/foto-55.jpg",
 ];
 
 /* ---------- PRENSA ----------
    Artículos reales encontrados en internet sobre El Alma de la Manzana.
-   "cita" es lo que aparece en el carrusel de la portada. */
+   "cita" es lo que aparece en el carrusel de la portada.
+   tipo: "radio" para entrevistas (el enlace dice «Escuchar la entrevista»). */
 const PRENSA = [
+  {
+    medio: "Radio Costa Esmeralda", fecha: "2025-11-18", autor: "Russell Simoni", tipo: "radio",
+    titular: "El Alma de la Manzana: entrevista con Rosa y Sara",
+    cita: "Un proyecto teatral, social y feminista creado en Cantabria y que da voz a las mujeres desde la comunidad.",
+    resumen: "Rosa y Sara, integrantes del grupo, presentan la función del 22 de noviembre en la Fundación Orense (Ramales de la Victoria).",
+    url: "https://youtu.be/LViy6r-7wvE",
+  },
+  {
+    medio: "Radio Costa Esmeralda", fecha: "2024-11-28", autor: "Russell Simoni", tipo: "radio",
+    titular: "Entrevista con Sara Trebolazabala Núñez sobre El Alma de la Manzana",
+    resumen: "El Alma de la Manzana: algo más que teatro. Entrevista por teléfono.",
+    url: "https://www.ivoox.com/entrevista-sara-trebolazabala-nunez-sobre-el-alma-audios-mp3_rf_136380679_1.html",
+  },
+  {
+    medio: "El Faradio", fecha: "2024-11-22", tipo: "radio",
+    titular: "Conocemos la asociación feminista ‘El alma de la manzana’, con Emma Díez",
+    resumen: "Un proyecto que nació en Villaescusa, pero abierto a mujeres de cualquier parte, antes del preestreno del 30 de noviembre.",
+    url: "https://youtu.be/Pb3aTc6Om74",
+  },
   {
     medio: "Cantabria Press", fecha: "2025-06-07",
     titular: "Éxito de la representación de «El Alma de la Manzana» en el Centro Cultural de Cueto «Juan de Santander»",

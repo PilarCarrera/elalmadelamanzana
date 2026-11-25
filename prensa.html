@@ -37,7 +37,7 @@
       <div class="container">
         <a class="back-link" href="index.html#prensa">‹ Volver al inicio</a><br>
         <h2 class="section-title caps visible">Prensa</h2>
-        <p class="section-intro">Lo que se ha publicado sobre El Alma de la Manzana.</p>
+        <p class="section-intro">Lo que se ha publicado sobre El Alma de la Manzana, y las entrevistas de radio.</p>
         <div class="press-list" id="press-list"></div>
       </div>
     </section>
@@ -74,7 +74,7 @@
           <h3>${p.titular}</h3>
           ${p.cita ? `<blockquote>«${p.cita}»</blockquote>` : ""}
           <p>${p.resumen || ""}</p>
-          ${p.url ? `<a class="press-link" href="${p.url}" target="_blank" rel="noopener">Leer el artículo ↗</a>` : ""}
+          ${p.url ? `<a class="press-link" href="${p.url}" target="_blank" rel="noopener">${p.tipo === "radio" ? "Escuchar la entrevista" : "Leer el artículo"} ↗</a>` : ""}
         </div>`;
       const t = art.querySelector(".press-thumb");
       if (t) t.addEventListener("click", () => Lightbox.open([{ src: p.imagen, caption: p.medio + " · " + fechaLarga(p.fecha) + " (pulsa para ampliar)" }]));

@@ -129,7 +129,7 @@ if (!reduceMotion && matchMedia("(hover: hover)").matches) {
   });
   poster.addEventListener("mouseleave", () => (poster.style.transform = ""));
 }
-poster.addEventListener("click", () => Lightbox.open([{ src: "images/cartel.png", caption: "Montaje teatral «El Alma de la Manzana»" }]));
+poster.addEventListener("click", () => Lightbox.open([{ src: "images/cartel.png", caption: "Montaje teatral «El Alma de la Manzana» · Diseño del cartel: Mar Pajarón" }]));
 $("#group-photo").addEventListener("click", () => Lightbox.open([{ src: "images/grupo.jpg", caption: "Las integrantes de El Alma de la Manzana" }]));
 
 const rain = $(".apple-rain"), hero = $(".hero");
@@ -184,7 +184,7 @@ const MUJERES = [
   // fila 4 (3 piezas)
   { corto: "Wangari", nombre: "Wangari Maathai", tag: "Mamá Árbol", anos: "1940–2011", texto: "«Mi pequeña cosa es plantar árboles». Un gesto pequeño que logró cambiar el paisaje y la vida de muchas mujeres en África." },
   { corto: "Afganas", nombre: "Mujeres afganas", tag: "Un poema para ellas", anos: "", texto: "«Necesito respirar, quiero olvidar… Me limitas la visión a tu realidad…»" },
-  { corto: "Nosotras", nombre: "Y nosotras", tag: "Yo no soy conocida", anos: "", texto: "«Porque todas soy yo, porque yo, sois todas»" },
+  { corto: "Y todas", nombre: "Y todas", tag: "Yo no soy conocida", anos: "", texto: "«Porque todas soy yo, porque yo, sois todas»" },
 ];
 
 (() => {
